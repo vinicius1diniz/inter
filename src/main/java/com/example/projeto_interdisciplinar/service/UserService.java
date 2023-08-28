@@ -1,8 +1,6 @@
 package com.example.projeto_interdisciplinar.service;
 
 import com.example.projeto_interdisciplinar.entity.User;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public interface UserService {
