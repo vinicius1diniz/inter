@@ -4,7 +4,6 @@ import com.example.projeto_interdisciplinar.entity.User;
 import com.example.projeto_interdisciplinar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 //
 @RestController
@@ -12,7 +11,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    @GetMapping("all")
+    @GetMapping("/all")
     public List<User> getProducts(){
         return userService.getUser();
     }
