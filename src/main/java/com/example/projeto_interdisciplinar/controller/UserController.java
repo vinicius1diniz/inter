@@ -1,8 +1,10 @@
 package com.example.projeto_interdisciplinar.controller;
 
-import com.example.projeto_interdisciplinar.entity.User;
+import com.example.projeto_interdisciplinar.entity.Usuario;
+import com.example.projeto_interdisciplinar.service.LogService;
 import com.example.projeto_interdisciplinar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 //
@@ -11,21 +13,33 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private LogService logService;
     @GetMapping("/all")
-    public List<User> getProducts(){
+    public List<Usuario> getUsers(){
         return userService.getUser();
     }
     @PostMapping("/insert")
-    public User insert(@RequestBody User user){
+    public Usuario insert(@RequestBody Usuario user){
+        logService.generateLog("Created account", user.getId());
         return userService.addUser(user);
+
     }
-    @PutMapping("/update/{id}")
-    public User user(@RequestBody User user, @PathVariable int id){
-        return userService.updateUser(id, user);
+    @PutMapping("/update/{id}/{email}")
+    public ResponseEntity updateEmail(@PathVariable int id, @PathVariable String email){
+        userService.updateEmail(id, email);
+        logService.generateLog("update email", id);
+        return ResponseEntity.ok("Email atualizado");
     }
     @DeleteMapping("/delete/{id}")
-    public User delete(@PathVariable int id){
-        return userService.delectUser(id);
+    public ResponseEntity delete(@PathVariable int id){
+        userService.delectUser(id);
+        logService.generateLog("delete account", id);
+        return ResponseEntity.ok("Usuario excluido");
+    }
+    @GetMapping("/verifyaccount")
+    public boolean verifyAccount(@RequestBody String email){
+        return userService.verifyAccount(email);
     }
 
 
