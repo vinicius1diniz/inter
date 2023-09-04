@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class LogServiceIMPL implements LogService {
@@ -17,8 +18,10 @@ public class LogServiceIMPL implements LogService {
     }
 
     @Override
-    public Log generateLog(String desc) {
-        Log log = new Log("teste",desc,"jaj", LocalDateTime.now());
+    public Log generateLog(String desc, int userid) {
+        UUID uuid = UUID.randomUUID();
+        String uuidAsString = uuid.toString();
+        Log log = new Log(uuidAsString,desc,userid, LocalDateTime.now());
         return logsRepo.save(log);
     }
 }

@@ -1,4 +1,6 @@
 package com.example.projeto_interdisciplinar.entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,9 +15,10 @@ import java.time.LocalDateTime;
 @Document(collection = "usuarios")
 public class Log {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String type;
-    private String user;
+    private int user;
     private LocalDateTime aconteceu;
 
     public String getId() {
@@ -34,11 +37,11 @@ public class Log {
         this.type = type;
     }
 
-    public String getUser() {
+    public int getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(int user) {
         this.user = user;
     }
 

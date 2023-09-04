@@ -18,6 +18,10 @@ public class UserServiceImpl implements UserService {
     public List<Usuario> getUser() {
         return userRepo.findAll();
     }
+    public boolean verifyAccount( String email){
+        Usuario usuario = userRepo.findByEmail(email);
+        return usuario != null;
+    }
     @Override
     public Usuario addUser(Usuario user) {
         return userRepo.save(user);
