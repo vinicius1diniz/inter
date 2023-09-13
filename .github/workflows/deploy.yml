@@ -24,3 +24,8 @@ jobs:
         dockerfile: dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+    - uses: johnbeynon/render-deploy-action@v0.0.8
+      name: Deploy to production
+      with:
+        service-id: ${{secrets.DEPLOY_HOOK_PROD}}
+        api-key: ${{secrets.API_KEY}}
