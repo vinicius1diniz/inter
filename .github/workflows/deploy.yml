@@ -16,11 +16,11 @@ jobs:
     - name: Compilar o Projeto
       run: |
           cd src
-          javac -cp . ProjetoInterdisciplinarApplication.java
+          javac -cp . src/test/java/com/example/projeto_interdisciplinar
     - name: Executado Projeto 
       run: |
           cd src
-          java -cp . ProjetoInterdisciplinarApplication
+          java -cp . src/test/java/com/example/projeto_interdisciplinar
     - uses: mr-smithers-excellent/docker-build-push@v6    
       name: Deploy no Docker 
       with:
