@@ -3,6 +3,8 @@ name: Pipeline PROD
 on:
   pull_request:
     branches: [ "PROD" ]
+  push:
+    branches: ["PROD"]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,11 +18,11 @@ jobs:
     - name: Compilar o Projeto
       run: |
           cd src
-          javac -cp . ProjetoInterdisciplinarApplication.java
+          javac -cp . src/test/java/com/example/projeto_interdisciplinar/ProjetoInterdisciplinarApplication.java
     - name: Executado Projeto 
       run: |
           cd src
-          java -cp . ProjetoInterdisciplinarApplication
+          java -cp . src/test/java/com/example/projeto_interdisciplinar/ProjetoInterdisciplinarApplication
     - uses: mr-smithers-excellent/docker-build-push@v6    
       name: Deploy no Docker 
       with:
