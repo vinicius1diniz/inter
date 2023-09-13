@@ -15,19 +15,11 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Compilar o Projeto
-      run: |
-          cd src
-          javac -cp . src/test/java/com/example/projeto_interdisciplinar/ProjetoInterdisciplinarApplication.java
-    - name: Executado Projeto 
-      run: |
-          cd src
-          java -cp . src/test/java/com/example/projeto_interdisciplinar/ProjetoInterdisciplinarApplication
     - uses: mr-smithers-excellent/docker-build-push@v6    
       name: Deploy no Docker 
       with:
         image: viniciustech/teeste
-        tags: prod-1.${{ github.run_number }}
+        tags: ${{ github.run_number }}
         registry: docker.io
         dockerfile: dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
