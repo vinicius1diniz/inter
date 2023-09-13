@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface LogService {
     List<Log> getLogs();
-    Log generateLog(String desc);
+    Log generateLog(String desc, int userid);
 }
