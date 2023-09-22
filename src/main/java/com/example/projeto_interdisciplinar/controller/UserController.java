@@ -23,7 +23,6 @@ public class UserController {
     public Usuario insert(@RequestBody Usuario user){
         logService.generateLog("Created account", user.getId());
         return userService.addUser(user);
-
     }
     @PutMapping("/update/{id}/{email}")
     public ResponseEntity updateEmail(@PathVariable int id, @PathVariable String email){
