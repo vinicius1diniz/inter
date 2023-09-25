@@ -37,8 +37,8 @@ public class UserController {
         return ResponseEntity.ok("Usuario excluido");
     }
     @GetMapping("/verifyaccount")
-    public boolean verifyAccount(@RequestBody String email){
-        return userService.verifyAccount(email);
+    public boolean verifyAccount(@RequestParam String email, @RequestParam String senha){
+        return userService.verifyAccount(email, senha);
     }
 
 
