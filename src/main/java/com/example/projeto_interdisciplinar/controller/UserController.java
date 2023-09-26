@@ -40,6 +40,11 @@ public class UserController {
     public boolean verifyAccount(@RequestParam String email, @RequestParam String senha){
         return userService.verifyAccount(email, senha);
     }
+    @GetMapping("/getById")
+    public Usuario getById(@RequestParam Integer id){
+        return userService.getUserById(id);
+    }
+
 
 
 }

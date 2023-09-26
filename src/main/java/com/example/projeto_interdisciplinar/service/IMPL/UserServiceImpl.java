@@ -30,6 +30,10 @@
         public Usuario addUser(Usuario user) {
             return userRepo.save(user);
         }
+        @Override
+        public Usuario getUserById(Integer id){
+            return userRepo.findById(id).orElse(null);
+        }
 
         @Override
         public void updateEmail(int id, String email) {
