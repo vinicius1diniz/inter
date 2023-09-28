@@ -16,7 +16,7 @@ jobs:
     - name: Buildando Spring
       run: |
         ./mvnw clean package
-      working-directory: src\main\java\com\example\projeto_interdisciplinar
+      working-directory: src/main/java/com/example/projeto_interdisciplinar
            
     - name: Git Version - Exemplo2
       id: gerador
