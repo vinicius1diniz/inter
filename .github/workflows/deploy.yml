@@ -14,9 +14,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Buildando Spring
-      run: |
-        ./mvnw.cmd clean package
-      working-directory: src/main/java/com/example/projeto_interdisciplinar
+      run: ./mvnw clean package
            
     - name: Git Version - Exemplo2
       id: gerador
