@@ -2,8 +2,11 @@
 
     import com.example.projeto_interdisciplinar.entity.Usuario;
     import com.example.projeto_interdisciplinar.repo.UserRepo;
+    import com.example.projeto_interdisciplinar.service.LogService;
     import com.example.projeto_interdisciplinar.service.UserService;
     import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
     import org.springframework.stereotype.Service; // Import the Service annotation
 
     import java.util.List;
@@ -14,6 +17,8 @@
     public class UserServiceImpl implements UserService {
         @Autowired
         private UserRepo userRepo;
+        @Autowired
+        private LogService logService;
 
         @Override
         public List<Usuario> getUser() {
@@ -31,8 +36,13 @@
             return userRepo.save(user);
         }
         @Override
-        public Usuario getUserById(Integer id){
-            return userRepo.findById(id).orElse(null);
+        public ResponseEntity getUserByEmail(String email){
+            try{
+                Usuario user = userRepo.findByEmail(email);
+                return ResponseEntity.ok(user);
+            } catch (Exception e){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email não encontrado");
+            }
         }
 
         @Override
