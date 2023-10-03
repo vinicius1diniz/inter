@@ -51,6 +51,11 @@ public class UserController {
     public ResponseEntity ranking(){
         return userService.getRanking();
     }
+    @PatchMapping("/password")
+    public ResponseEntity resetPassword(@RequestParam String email, @RequestParam String password){
+        return userService.resetPassword(email, password);
+    }
+
 
 
 

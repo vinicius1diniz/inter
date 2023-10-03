@@ -53,8 +53,18 @@
                 List<RankingDTO> ranking = userRepo.WeeklyRanking();
                 return ResponseEntity.ok(ranking);
             } catch (Exception e){
-                List<RankingDTO> ranking = userRepo.WeeklyRanking();
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ranking);
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
+            }
+        }
+        @Override
+        public ResponseEntity resetPassword(String email, String password){
+            try{
+                Usuario user = userRepo.findByEmail(email);
+                user.setSenha(password);
+                userRepo.save(user);
+                return ResponseEntity.ok(user);
+            }catch (Exception e){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email não encontrado");
             }
         }
 
