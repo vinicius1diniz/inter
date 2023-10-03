@@ -12,4 +12,5 @@ public interface UserService {
     Usuario addUser(Usuario user);
     void updateEmail(int id, String email);
     void delectUser(int id);
+    ResponseEntity getRanking();
 }

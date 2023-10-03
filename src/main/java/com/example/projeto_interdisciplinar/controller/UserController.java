@@ -1,5 +1,6 @@
 package com.example.projeto_interdisciplinar.controller;
 
+import com.example.projeto_interdisciplinar.dto.UserDTO;
 import com.example.projeto_interdisciplinar.entity.Usuario;
 //import com.example.projeto_interdisciplinar.service.LogService;
 import com.example.projeto_interdisciplinar.service.UserService;
@@ -20,9 +21,10 @@ public class UserController {
         return userService.getUser();
     }
     @PostMapping("/insert")
-    public Usuario insert(@RequestBody Usuario user){
+    public Usuario insert(@RequestBody UserDTO user){
 //        logService.generateLog("Created account", user.getId());
-        return userService.addUser(user);
+        Usuario usuario = new Usuario(user);
+        return userService.addUser(usuario);
     }
     @PutMapping("/update/{id}/{email}")
     public ResponseEntity updateEmail(@PathVariable int id, @PathVariable String email){
@@ -44,6 +46,12 @@ public class UserController {
     public ResponseEntity getById(@RequestParam String email){
         return userService.getUserByEmail(email);
     }
+
+    @GetMapping("/ranking")
+    public ResponseEntity ranking(){
+        return userService.getRanking();
+    }
+
 
 
 
