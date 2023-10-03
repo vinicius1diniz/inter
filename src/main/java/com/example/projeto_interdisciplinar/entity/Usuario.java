@@ -18,7 +18,6 @@ public class Usuario {
     private int pontos;
     private String nome_usuario;
     private String nome_real;
-    private int num_kitcoins;
     private String email;
 
     private int fk_plano_id;
@@ -71,14 +70,6 @@ public class Usuario {
         this.nome_real = nome_real;
     }
 
-    public int getNum_kitcoins() {
-        return num_kitcoins;
-    }
-
-    public void setNum_kitcoins(int num_kitcoins) {
-        this.num_kitcoins = num_kitcoins;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -96,13 +87,12 @@ public class Usuario {
     }
 
 
-    public Usuario(Date data_nascimento, String senha, int pontos, String nome_usuario, String nome_real, int num_kitcoins, String email, int fk_plano_id) {
+    public Usuario(Date data_nascimento, String senha, int pontos, String nome_usuario, String nome_real, String email, int fk_plano_id) {
         this.data_nascimento = data_nascimento;
         this.senha = senha;
         this.pontos = pontos;
         this.nome_usuario = nome_usuario;
         this.nome_real = nome_real;
-        this.num_kitcoins = num_kitcoins;
         this.email = email;
         this.fk_plano_id = fk_plano_id;
     }
@@ -119,7 +109,6 @@ public class Usuario {
                 ", pontos=" + pontos +
                 ", nome_usuario='" + nome_usuario + '\'' +
                 ", nome_real='" + nome_real + '\'' +
-                ", num_kitcoins=" + num_kitcoins +
                 ", email='" + email + '\'' +
                 ", fk_plano_id=" + fk_plano_id +
                 '}';
