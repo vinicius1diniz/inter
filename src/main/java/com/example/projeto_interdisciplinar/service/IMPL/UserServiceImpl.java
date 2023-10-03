@@ -1,9 +1,12 @@
     package com.example.projeto_interdisciplinar.service.IMPL;
 
+    import com.example.projeto_interdisciplinar.dto.RankingDTO;
+    import com.example.projeto_interdisciplinar.dto.UserDTO;
     import com.example.projeto_interdisciplinar.entity.Usuario;
     import com.example.projeto_interdisciplinar.repo.UserRepo;
     import com.example.projeto_interdisciplinar.service.LogService;
     import com.example.projeto_interdisciplinar.service.UserService;
+    import org.apache.coyote.Response;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
     import org.springframework.http.ResponseEntity;
@@ -42,6 +45,16 @@
                 return ResponseEntity.ok(user);
             } catch (Exception e){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email não encontrado");
+            }
+        }
+        @Override
+        public ResponseEntity getRanking(){
+            try{
+                List<RankingDTO> ranking = userRepo.WeeklyRanking();
+                return ResponseEntity.ok(ranking);
+            } catch (Exception e){
+                List<RankingDTO> ranking = userRepo.WeeklyRanking();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ranking);
             }
         }
 
