@@ -2,7 +2,7 @@ package com.example.projeto_interdisciplinar.controller;
 
 import com.example.projeto_interdisciplinar.dto.UserDTO;
 import com.example.projeto_interdisciplinar.entity.Usuario;
-//import com.example.projeto_interdisciplinar.service.LogService;
+import com.example.projeto_interdisciplinar.service.LogService;
 import com.example.projeto_interdisciplinar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +15,15 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-//    private LogService logService;
+    private LogService logService;
     @GetMapping("/all")
     public List<Usuario> getUsers(){
         return userService.getUser();
     }
     @PostMapping("/insert")
     public Usuario insert(@RequestBody UserDTO user){
-//        logService.generateLog("Created account", user.getId());
         Usuario usuario = new Usuario(user);
+        logService.generateLog("Created account", usuario.getId());
         return userService.addUser(usuario);
     }
     @PutMapping("/update/{id}/{email}")
