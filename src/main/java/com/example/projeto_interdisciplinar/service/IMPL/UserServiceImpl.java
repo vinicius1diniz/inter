@@ -1,12 +1,9 @@
     package com.example.projeto_interdisciplinar.service.IMPL;
 
     import com.example.projeto_interdisciplinar.dto.RankingDTO;
-    import com.example.projeto_interdisciplinar.dto.UserDTO;
     import com.example.projeto_interdisciplinar.entity.Usuario;
     import com.example.projeto_interdisciplinar.repo.UserRepo;
-    import com.example.projeto_interdisciplinar.service.LogService;
     import com.example.projeto_interdisciplinar.service.UserService;
-    import org.apache.coyote.Response;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
     import org.springframework.http.ResponseEntity;
@@ -20,19 +17,18 @@
     public class UserServiceImpl implements UserService {
         @Autowired
         private UserRepo userRepo;
-        @Autowired
-        private LogService logService;
 
         @Override
         public List<Usuario> getUser() {
             return userRepo.findAll();
         }
         public boolean verifyAccount( String email, String password){
-            Usuario usuario = userRepo.findByEmail(email);
-            if (usuario != null && Objects.equals(usuario.getSenha(), password)){
-                return true;
+            try{
+                Usuario usuario = userRepo.findByEmail(email);
+                return usuario != null && Objects.equals(usuario.getSenha(), password);
+            } catch (Exception e){
+                return false;
             }
-            return false;
         }
         @Override
         public Usuario addUser(Usuario user) {
@@ -44,7 +40,7 @@
                 Usuario user = userRepo.findByEmail(email);
                 return ResponseEntity.ok(user);
             } catch (Exception e){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email não encontrado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
             }
         }
         @Override
