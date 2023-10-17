@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "bancointerdisciplinar",
+  "private_key_id": "27c960a9de6125c50948da2d0b46eea19efdf0c1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDMSBLt55eqfkqd\n8MOqKl0cyqYNh01wbFeQ5P2gtd7F6VHnmyo6V73rjta9N7mvGtXIOL488jQgcEzy\n/ZdybWUHXBV5fogGZA6i1r0im0yio8opvsx2R389Yqy9J7w3wu7rJfZLC86EIACr\ni2aT8Glh2miVHJsGZ3U7OyTEy2n0+vQgRx6WnzqlGnx10Hx101ru+m6Wh1kfx8Ee\nmoLu2+e18j7hociMYOgSEIwCUeR1j8c8wodvno8/g/Lb5TgUJ3+M9L+ArYy8cLWg\nTwaYS7SC3X4Ihz8/nzWDTKSi9LoQ2BFsVGZPs+7va3G1lgrlv2cC+TaFtlbwAx3a\nhD83IlobAgMBAAECggEAIZ4Gx3HiSqNn4h/6Aynfktpigz1t5/9cVbLpbiYf2A/y\nc5vcUieYUIh8HD1saD2RStbTr7HoFCKG90H2R1VrV8+2lPzWo76ZjgCqtWQ7M1Si\n80W73gccEF0JskM0vTRuHvJrWqRBwwqFMbXKFrRskzbfGRLRDDfAWhP8lAopkK/k\nckunEc8yMC2InIMMesxY1+5CmyPQMj5MAtcFNe7eFo52+ysGoO3+fN+3aiCqGFlp\nNFixSp0SPSP/q5DbQ1Op6hJHQW3dN6ELtfnsxpHqhL7XGOJz9BsmCXxxUylPDRFa\nr/+aSZQvvJ8NNnpUS0IQmSmRxZ6axGlngb3rsDiR8QKBgQDlxk+l1BoQg/o62pSt\nxQZuCI+IdDMbSIUwCA5CWT1g8KgWTaAaW6mndLHXp4rWaS5zEg8xy69+23x03T5l\nR4PHFKZNJgGq1MnqYoNBI6EGYQXNFT6P3nGSEi4r1Ao2cM8ygC30V7cYSNuoIve1\nHLy8vpZGloRAJXFOXQjhYP8puQKBgQDjmOPnbteUDqpceaeAOIfoXBn93HxfTuem\nNeEoO1K2BTMMyo2i/NYfuAV4tUKHGuUgGCQRjmt4r0TVDCUzl9nVn/dBD2A35CHc\nSKb8QIA2lCBIHKrpSKfnE4mlwE2P737S+Xu5aWn44itinT1aO9cES4Dk/L2IZQUg\nDIhdMTV8cwKBgQDhR6kJnkYb0ToCgBJruRPPyCbqE3uUEWs8J3nLhXFPXUR/8YW6\nsgpJe3luRf8yrxdyjM9G9DxRdWK1tcGaTR6fjthqJYxW8KAzZHjp4cPb3D5yz5Ry\nPBc/rwGDyTZmH/6VteTYfzOt5KkwVXBmKxHFQFtYQ/TQa6WGvmKZjp8+SQKBgQC5\n5/zg4e09hu0pNEXZulNpPTIN5rfAshcN8RzFXA+nln+ohxtCcvwEVLBDdOuuqA1Y\nNd/gZ1Dp92BmFdGdXwAUOuIgRor1nGb8JGwhyB3ydvQXczM38p0TZyYcOgQg+iPB\n+P9S6AQjw7pkhsPCnPZ5D6NtZ/T5IGsbTqFkXfmueQKBgFZPfUMrHjW6X1iZBBVm\nNBaxseRdLu3AJapc2R5L1YjogUkA8FYwa3zNPUngiZqySSW15RcDHihKixKHPu+6\n2fC1/5DtYldhyxn3KGD2clk8NolNNeCCyIjGfAWG52cFpg5qhrr5F3YidiXhFnPM\n9BKAcZxf8RqFL9lOO9sSl5rO\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-p0em0@bancointerdisciplinar.iam.gserviceaccount.com",
+  "client_id": "112669688472796590562",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-p0em0%40bancointerdisciplinar.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

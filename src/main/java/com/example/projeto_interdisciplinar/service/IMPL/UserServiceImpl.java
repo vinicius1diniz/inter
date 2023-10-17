@@ -1,8 +1,8 @@
     package com.example.projeto_interdisciplinar.service.IMPL;
 
+    import com.example.projeto_interdisciplinar.dto.RankingDTO;
     import com.example.projeto_interdisciplinar.entity.Usuario;
     import com.example.projeto_interdisciplinar.repo.UserRepo;
-    import com.example.projeto_interdisciplinar.service.LogService;
     import com.example.projeto_interdisciplinar.service.UserService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
@@ -17,19 +17,18 @@
     public class UserServiceImpl implements UserService {
         @Autowired
         private UserRepo userRepo;
-        @Autowired
-        private LogService logService;
 
         @Override
         public List<Usuario> getUser() {
             return userRepo.findAll();
         }
         public boolean verifyAccount( String email, String password){
-            Usuario usuario = userRepo.findByEmail(email);
-            if (usuario != null && Objects.equals(usuario.getSenha(), password)){
-                return true;
+            try{
+                Usuario usuario = userRepo.findByEmail(email);
+                return usuario != null && Objects.equals(usuario.getSenha(), password);
+            } catch (Exception e){
+                return false;
             }
-            return false;
         }
         @Override
         public Usuario addUser(Usuario user) {
@@ -41,6 +40,26 @@
                 Usuario user = userRepo.findByEmail(email);
                 return ResponseEntity.ok(user);
             } catch (Exception e){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
+            }
+        }
+        @Override
+        public ResponseEntity getRanking(){
+            try{
+                List<RankingDTO> ranking = userRepo.WeeklyRanking();
+                return ResponseEntity.ok(ranking);
+            } catch (Exception e){
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
+            }
+        }
+        @Override
+        public ResponseEntity resetPassword(String email, String password){
+            try{
+                Usuario user = userRepo.findByEmail(email);
+                user.setSenha(password);
+                userRepo.save(user);
+                return ResponseEntity.ok(user);
+            }catch (Exception e){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email não encontrado");
             }
         }
