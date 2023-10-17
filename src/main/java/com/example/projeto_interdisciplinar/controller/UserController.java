@@ -1,5 +1,4 @@
 package com.example.projeto_interdisciplinar.controller;
-
 import com.example.projeto_interdisciplinar.dto.UserDTO;
 import com.example.projeto_interdisciplinar.entity.Usuario;
 import com.example.projeto_interdisciplinar.service.UserService;
@@ -7,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -41,10 +41,6 @@ public class UserController {
         return userService.getUserByEmail(email);
     }
 
-    @GetMapping("/ranking")
-    public ResponseEntity ranking(){
-        return userService.getRanking();
-    }
     @PatchMapping("/password")
     public ResponseEntity resetPassword(@RequestParam String email, @RequestParam String password){
         return userService.resetPassword(email, password);

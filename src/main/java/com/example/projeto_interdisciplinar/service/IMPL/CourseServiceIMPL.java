@@ -1,44 +1,43 @@
 package com.example.projeto_interdisciplinar.service.IMPL;
 
-//import com.example.projeto_interdisciplinar.entity.Usuario;
-//import com.example.projeto_interdisciplinar.entity.UsuarioCurso;
-//import com.example.projeto_interdisciplinar.repo.CourseRepo;
-//import com.example.projeto_interdisciplinar.repo.UserRepo;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.HashMap;
-//import java.util.Map;
-//
-//@Service
-//public class CourseServiceIMPL {
-//    @Autowired
-//    private CourseRepo courseRepo;
-//
-//    @Autowired
-//    private UserRepo userRepo;
-//    ResponseEntity findCourseByUserEmail(String email){
-//        try{
-//            int id_usuario = userRepo.findByEmail(email).getId();
-//            int aula_atual = courseRepo.findCourseByUserId(id_usuario).getAula_atual();
-//            Map<String, Integer> aula = new HashMap<>();
-//            if(aula_atual % 4 == 0){
-//                aula.put("num_aula", aula_atual);
-//                aula.put("posicao_aula", 4);
-//            } else if(aula_atual % 3 == 0){
-//                aula.put("num_aula", aula_atual);
-//                aula.put("posicao_aula", 3);
-//            } else if(aula_atual % 2 == 0){
-//                aula.put("num_aula", aula_atual);
-//                aula.put("posicao_aula", 2);
-//            } else if(aula_atual % 5 == 0){
-//                aula.put("num_aula", aula_atual);
-//                aula.put("posicao_aula", 5);
-//            }
-//            return ResponseEntity.ok(aula);
-//        } catch (Exception e){
-//            return ResponseEntity.internalServerError().body(e);
-//        }
-//    }
-//}
+import com.example.projeto_interdisciplinar.entity.Curso;
+import com.example.projeto_interdisciplinar.entity.UsuarioCurso;
+import com.example.projeto_interdisciplinar.repo.CourseRepo;
+import com.example.projeto_interdisciplinar.repo.UserCourseRepo;
+import com.example.projeto_interdisciplinar.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+
+@Service
+public class CourseServiceIMPL implements CourseService {
+    @Autowired
+    private CourseRepo courseRepo;
+    @Autowired
+    private UserCourseRepo userCourseRepo;
+
+    public List<Curso> findAllCourses(){
+        return courseRepo.findAll();
+    }
+    public List<Curso> findSuggestedCourses(){
+        return courseRepo.CursosSugeridos();
+    }
+    public UsuarioCurso findLastCourse(int id){
+        return userCourseRepo.UltimoCursoAcessado(id);
+    }
+    public Map showHome(int id){
+        UsuarioCurso userCouser = findLastCourse(id);
+        Curso ultimoCurso = courseRepo.findById(userCouser.getId()).orElse(null);
+        Map<Integer, Curso> response = new HashMap<>();
+        List<Curso> sugeridos = findSuggestedCourses();
+        response.put(0, ultimoCurso);
+        response.put(1, sugeridos.get(0));
+        response.put(2, sugeridos.get(1));
+        return response;
+    }
+    }
