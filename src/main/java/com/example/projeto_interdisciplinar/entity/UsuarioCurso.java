@@ -1,12 +1,10 @@
 package com.example.projeto_interdisciplinar.entity;
-
 import com.example.projeto_interdisciplinar.dto.UserDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
-
 import java.sql.Timestamp;
 import java.util.Date;
 

@@ -1,5 +1,4 @@
 package com.example.projeto_interdisciplinar.service.IMPL;
-
 import com.example.projeto_interdisciplinar.entity.Curso;
 import com.example.projeto_interdisciplinar.entity.UsuarioCurso;
 import com.example.projeto_interdisciplinar.repo.CourseRepo;
