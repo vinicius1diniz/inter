@@ -40,7 +40,10 @@ public class UserController {
     public ResponseEntity getById(@RequestParam String email){
         return userService.getUserByEmail(email);
     }
-
+    @GetMapping("/ranking")
+    public ResponseEntity ranking(){
+        return userService.getRanking();
+    }
     @PatchMapping("/password")
     public ResponseEntity resetPassword(@RequestParam String email, @RequestParam String password){
         return userService.resetPassword(email, password);
@@ -51,9 +54,4 @@ public class UserController {
         System.out.println(response);
         return response;
     }
-
-
-
-
-
 }

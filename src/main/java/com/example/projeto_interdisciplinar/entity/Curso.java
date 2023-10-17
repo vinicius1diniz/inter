@@ -1,5 +1,4 @@
 package com.example.projeto_interdisciplinar.entity;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,3 +22,4 @@ public class Curso {
     private int num_aulas;
     private String tema;
 }
+
