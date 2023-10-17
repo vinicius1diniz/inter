@@ -32,10 +32,14 @@ public class CourseServiceIMPL implements CourseService {
     }
     public Map showHome(int id){
         UsuarioCurso userCouser = findLastCourse(id);
-        Curso ultimoCurso = courseRepo.findById(userCouser.getId()).orElse(null);
         Map<Integer, Curso> response = new HashMap<>();
         List<Curso> sugeridos = findSuggestedCourses();
-        response.put(0, ultimoCurso);
+        if (userCouser != null){
+            Curso ultimoCurso = courseRepo.findById(userCouser.getId()).orElse(null);
+            response.put(0, ultimoCurso);
+        } else{
+            response.put(0, new Curso());
+        }
         response.put(1, sugeridos.get(0));
         response.put(2, sugeridos.get(1));
         return response;
