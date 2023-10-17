@@ -10,5 +10,7 @@ import java.util.List;
 public interface CourseRepo extends JpaRepository<Curso,Integer> {
     @Query("SELECT u FROM Curso u ORDER BY RANDOM() LIMIT 2")
     List<Curso> CursosSugeridos();
+    @Query("SELECT u FROM Curso u WHERE u.tema = :tema")
+    List<Curso> CursosPorTema(String tema);
 }
 
