@@ -11,4 +11,3 @@ public interface CourseRepo extends JpaRepository<Curso,Integer> {
     @Query("SELECT u FROM Curso u ORDER BY RANDOM() LIMIT 2")
     List<Curso> CursosSugeridos();
 }
-
