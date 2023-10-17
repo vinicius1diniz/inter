@@ -1,4 +1,5 @@
 package com.example.projeto_interdisciplinar.service.IMPL;
+import com.example.projeto_interdisciplinar.TemasCurso;
 import com.example.projeto_interdisciplinar.entity.Curso;
 import com.example.projeto_interdisciplinar.entity.UsuarioCurso;
 import com.example.projeto_interdisciplinar.repo.CourseRepo;
@@ -6,12 +7,10 @@ import com.example.projeto_interdisciplinar.repo.UserCourseRepo;
 import com.example.projeto_interdisciplinar.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 
 @Service
 public class CourseServiceIMPL implements CourseService {
@@ -29,18 +28,21 @@ public class CourseServiceIMPL implements CourseService {
     public UsuarioCurso findLastCourse(int id){
         return userCourseRepo.UltimoCursoAcessado(id);
     }
-    public Map showHome(int id){
+    public Curso showHome(int id){
         UsuarioCurso userCouser = findLastCourse(id);
-        Map<Integer, Curso> response = new HashMap<>();
-        List<Curso> sugeridos = findSuggestedCourses();
         if (userCouser != null){
             Curso ultimoCurso = courseRepo.findById(userCouser.getId()).orElse(null);
-            response.put(0, ultimoCurso);
+            return ultimoCurso;
         } else{
-            response.put(0, new Curso());
+            return new Curso();
         }
-        response.put(1, sugeridos.get(0));
-        response.put(2, sugeridos.get(1));
-        return response;
+    }
+    public List<Curso> findCoursesByTheme(String tema){
+        try {
+            TemasCurso temaEnum = TemasCurso.valueOf(tema);
+            return courseRepo.CursosPorTema(String.valueOf(temaEnum));
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
     }

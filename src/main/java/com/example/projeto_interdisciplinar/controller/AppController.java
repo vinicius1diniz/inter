@@ -1,5 +1,6 @@
 package com.example.projeto_interdisciplinar.controller;
 
+import com.example.projeto_interdisciplinar.entity.Curso;
 import com.example.projeto_interdisciplinar.service.CourseService;
 import com.example.projeto_interdisciplinar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -27,7 +29,17 @@ public class AppController {
     }
     @GetMapping("/home")
     public ResponseEntity home(@RequestParam int id){
-        Map response =  courseService.showHome(id);
+        Curso response =  courseService.showHome(id);
+        return ResponseEntity.ok().body(response);
+    }
+    @GetMapping("/cursosbytema")
+    public ResponseEntity cursosByTema(@RequestParam String tema){
+        List<Curso> response = courseService.findCoursesByTheme(tema);
+        return ResponseEntity.ok().body(response);
+    }
+    @GetMapping("/all")
+    public ResponseEntity allCourses(){
+        List<Curso> response = courseService.findAllCourses();
         return ResponseEntity.ok().body(response);
     }
 }

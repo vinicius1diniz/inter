@@ -11,5 +11,6 @@ public interface CourseService {
     List<Curso> findAllCourses();
     List<Curso> findSuggestedCourses();
     UsuarioCurso findLastCourse(int id);
-    Map showHome(int id);
+    Curso showHome(int id);
+    List<Curso> findCoursesByTheme(String tema);
 }

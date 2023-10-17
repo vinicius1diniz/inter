@@ -20,4 +20,6 @@ public class Curso {
     private String nivel_dificuldade;
     private String descricao;
     private int num_aulas;
+    private String tema;
 }
+
