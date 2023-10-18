@@ -42,4 +42,9 @@ public class AppController {
         List<Curso> response = courseService.findAllCourses();
         return ResponseEntity.ok().body(response);
     }
+    @GetMapping("/suggestedcourse")
+    public ResponseEntity suggestedCourses(){
+        List<Curso> response = courseService.findSuggestedCourses();
+        return ResponseEntity.ok().body(response);
+    }
 }

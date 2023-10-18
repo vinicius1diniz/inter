@@ -34,8 +34,7 @@ public class CourseServiceIMPL implements CourseService {
     public Curso showHome(int id){
         UsuarioCurso userCouser = findLastCourse(id);
         if (userCouser != null){
-            Curso ultimoCurso = courseRepo.findById(userCouser.getId()).orElse(null);
-            return ultimoCurso;
+            return courseRepo.findById(userCouser.getId()).orElse(null);
         } else{
             return new Curso();
         }
