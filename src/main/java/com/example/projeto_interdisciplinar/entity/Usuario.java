@@ -27,6 +27,7 @@ public class Usuario {
     private String email;
     private int fk_plano_id = 1;
 
+
     public Usuario(UserDTO user) {
         this.data_nascimento = user.getData_nascimento();
         this.senha = user.getSenha();
