@@ -1,4 +1,4 @@
-name: Pipeline PROD
+name: Pipeline PROD Deploy
 on:
   pull_request:
     branches: ["PROD"]
