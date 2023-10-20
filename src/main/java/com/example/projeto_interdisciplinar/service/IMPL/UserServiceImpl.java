@@ -77,4 +77,16 @@
         public void delectUser(int id) {
             userRepo.deleteById(id);
         }
+
+        @Override
+        public void saveFoto(String email, String imagem){
+            try{
+            Usuario user1 = userRepo.findByEmail(email);
+            user1.setFoto_perfil(imagem);
+            userRepo.save(user1);
+            } catch (Exception e){
+                System.out.println(e);
+            }
+        }
+
     }

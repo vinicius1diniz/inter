@@ -14,4 +14,6 @@ public interface UserService {
     void delectUser(int id);
     ResponseEntity getRanking();
     ResponseEntity resetPassword(String email, String password);
+
+    void saveFoto(String email, String imagem);
 }

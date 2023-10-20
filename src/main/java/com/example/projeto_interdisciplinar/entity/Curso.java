@@ -21,6 +21,6 @@ public class Curso {
     private String descricao;
     private int num_aulas;
     private String tema;
-    private String url_logo;
+    private String foto_curso;
 }
 
