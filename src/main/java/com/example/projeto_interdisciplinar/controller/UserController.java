@@ -53,8 +53,11 @@ public class UserController {
     }
     @PatchMapping("/foto")
     public ResponseEntity saveFoto(@RequestParam String email, @RequestParam String imagem){
-        userService.saveFoto(email, imagem);
-        return ResponseEntity.ok().body("Foto alterada com sucesso");
+        if(email != null){
+            userService.saveFoto(email, imagem);
+            return ResponseEntity.ok().body("Foto alterada com sucesso");
+        }
+        return ResponseEntity.badRequest().body("Erro, sem e-mail");
     }
 
 
