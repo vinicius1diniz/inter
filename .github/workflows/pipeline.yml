@@ -1,7 +1,7 @@
 name: Pipeline PROD
 on:
-  push:
-    branches: ["DEV"]
+  pull_request:
+    branches: ["PROD"]
 jobs:
   build:
     runs-on: ubuntu-latest
