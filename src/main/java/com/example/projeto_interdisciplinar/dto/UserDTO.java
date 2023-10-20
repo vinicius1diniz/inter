@@ -21,4 +21,5 @@ public class UserDTO {
     private String nome_usuario;
     private String nome_real;
     private String email;
+    private String foto_perfil;
 }

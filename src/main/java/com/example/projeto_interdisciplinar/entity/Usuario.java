@@ -26,7 +26,7 @@ public class Usuario {
     private String nome_real;
     private String email;
     private int fk_plano_id = 1;
-
+    private String foto_perfil;
 
     public Usuario(UserDTO user) {
         this.data_nascimento = user.getData_nascimento();

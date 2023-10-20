@@ -51,6 +51,11 @@ public class UserController {
         System.out.println(response);
         return response;
     }
+    @PatchMapping("/foto")
+    public ResponseEntity saveFoto(@RequestParam String email, @RequestParam String imagem){
+        userService.saveFoto(email, imagem);
+        return ResponseEntity.ok().body("Foto alterada com sucesso");
+    }
 
 
 
