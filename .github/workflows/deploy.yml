@@ -1,8 +1,7 @@
 name: Deploy Imagem
-
 on:
   push:
-    branches: [ "PROD" ]
+    branches: [ "PROD", "DEV" ]
 jobs:
   build:
     runs-on: ubuntu-latest
