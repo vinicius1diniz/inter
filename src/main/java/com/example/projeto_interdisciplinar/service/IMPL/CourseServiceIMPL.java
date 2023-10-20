@@ -1,5 +1,4 @@
 package com.example.projeto_interdisciplinar.service.IMPL;
-
 import com.example.projeto_interdisciplinar.TemasCurso;
 import com.example.projeto_interdisciplinar.entity.Curso;
 import com.example.projeto_interdisciplinar.entity.UsuarioCurso;
@@ -8,12 +7,10 @@ import com.example.projeto_interdisciplinar.repo.UserCourseRepo;
 import com.example.projeto_interdisciplinar.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 
 @Service
 public class CourseServiceIMPL implements CourseService {

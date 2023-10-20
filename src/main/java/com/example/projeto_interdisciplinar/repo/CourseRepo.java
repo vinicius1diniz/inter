@@ -13,4 +13,3 @@ public interface CourseRepo extends JpaRepository<Curso,Integer> {
     @Query("SELECT u FROM Curso u WHERE u.tema = :tema")
     List<Curso> CursosPorTema(String tema);
 }
-
