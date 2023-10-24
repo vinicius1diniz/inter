@@ -51,7 +51,7 @@ public class UserController {
         System.out.println(response);
         return response;
     }
-    @PutMapping("/foto")
+    @PatchMapping("/foto")
     public ResponseEntity saveFoto(@RequestParam String email, @RequestParam String imagem){
         if(email != null){
             userService.saveFoto(email, imagem);
