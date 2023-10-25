@@ -1,7 +1,9 @@
 package com.example.projeto_interdisciplinar.controller;
 
+import com.example.projeto_interdisciplinar.entity.Aula;
 import com.example.projeto_interdisciplinar.entity.Curso;
 import com.example.projeto_interdisciplinar.service.CourseService;
+import com.example.projeto_interdisciplinar.service.LessonService;
 import com.example.projeto_interdisciplinar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +20,12 @@ import java.util.Map;
 public class AppController {
     private UserService userService;
     private CourseService courseService;
+    private LessonService lessonService;
     @Autowired
-    public AppController(UserService userService, CourseService courseService) {
+    public AppController(UserService userService, CourseService courseService, LessonService lessonService) {
         this.userService = userService;
         this.courseService = courseService;
+        this.lessonService = lessonService;
     }
     @GetMapping("/ranking")
     public ResponseEntity ranking(){
@@ -45,6 +49,11 @@ public class AppController {
     @GetMapping("/suggestedcourse")
     public ResponseEntity suggestedCourses(){
         List<Curso> response = courseService.findSuggestedCourses();
+        return ResponseEntity.ok().body(response);
+    }
+    @GetMapping("/lessons")
+    public ResponseEntity allLessonsByCourse(@RequestParam int id){
+        List<Aula> response = lessonService.getAulasByCurso(id);
         return ResponseEntity.ok().body(response);
     }
 }
