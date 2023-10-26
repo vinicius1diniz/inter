@@ -56,4 +56,9 @@ public class AppController {
         List<Aula> response = lessonService.getAulasByCurso(id);
         return ResponseEntity.ok().body(response);
     }
+    @GetMapping("/currentclass")
+    public ResponseEntity currentClass(@RequestParam int user_id, @RequestParam int course_id){
+        int aula = courseService.AulaAtual(user_id, course_id);
+        return ResponseEntity.ok().body(aula);
+    }
 }

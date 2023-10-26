@@ -31,12 +31,15 @@ public class CourseServiceIMPL implements CourseService {
     public UsuarioCurso findLastCourse(int id){
         return userCourseRepo.UltimoCursoAcessado(id);
     }
+    public int AulaAtual(int user_id, int course_id){
+        return userCourseRepo.getAulaAtual(user_id, course_id);
+    }
     public Curso showHome(int id){
         UsuarioCurso userCouser = findLastCourse(id);
         if (userCouser != null){
             return courseRepo.findById(userCouser.getId()).orElse(null);
         } else{
-            return new Curso();
+            return null;
         }
     }
     public List<Curso> findCoursesByTheme(String tema){

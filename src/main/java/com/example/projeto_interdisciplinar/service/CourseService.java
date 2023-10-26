@@ -14,4 +14,6 @@ public interface CourseService {
     UsuarioCurso findLastCourse(int id);
     Curso showHome(int id);
     List<Curso> findCoursesByTheme(String tema);
+
+    int AulaAtual(int user_id, int course_id);
 }
