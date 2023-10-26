@@ -34,11 +34,12 @@ public class CourseServiceIMPL implements CourseService {
     public Curso showHome(int id){
         UsuarioCurso userCouser = findLastCourse(id);
         if (userCouser != null){
-            return courseRepo.findById(userCouser.getId()).orElse(null);
+            return courseRepo.findById(userCouser.getFk_curso_id()).orElse(null);
         } else{
             return null;
         }
     }
+
     public List<Curso> findCoursesByTheme(String tema){
         try {
             TemasCurso temaEnum = TemasCurso.valueOf(tema);
