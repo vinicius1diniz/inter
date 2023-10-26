@@ -2,8 +2,10 @@ package com.example.projeto_interdisciplinar.controller;
 
 import com.example.projeto_interdisciplinar.entity.Aula;
 import com.example.projeto_interdisciplinar.entity.Curso;
+import com.example.projeto_interdisciplinar.entity.Questao;
 import com.example.projeto_interdisciplinar.service.CourseService;
 import com.example.projeto_interdisciplinar.service.LessonService;
+import com.example.projeto_interdisciplinar.service.QuestionService;
 import com.example.projeto_interdisciplinar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +23,13 @@ public class AppController {
     private UserService userService;
     private CourseService courseService;
     private LessonService lessonService;
+    private QuestionService questionService;
     @Autowired
-    public AppController(UserService userService, CourseService courseService, LessonService lessonService) {
+    public AppController(UserService userService, CourseService courseService, LessonService lessonService, QuestionService questionService) {
         this.userService = userService;
         this.courseService = courseService;
         this.lessonService = lessonService;
+        this.questionService = questionService;
     }
     @GetMapping("/ranking")
     public ResponseEntity ranking(){
@@ -59,6 +63,13 @@ public class AppController {
     @GetMapping("/currentclass")
     public ResponseEntity currentClass(@RequestParam int user_id, @RequestParam int course_id){
         int aula = courseService.AulaAtual(user_id, course_id);
+
         return ResponseEntity.ok().body(aula);
+    }
+
+    @GetMapping("/exercise")
+    public ResponseEntity exercise(@RequestParam int class_id){
+        Questao questao = questionService.getExerciseByClass(class_id);
+        return ResponseEntity.ok().body(questao);
     }
 }
