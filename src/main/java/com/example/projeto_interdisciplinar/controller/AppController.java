@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/app")
@@ -62,9 +62,9 @@ public class AppController {
     }
     @GetMapping("/currentclass")
     public ResponseEntity currentClass(@RequestParam int user_id, @RequestParam int course_id){
-        int aula = courseService.AulaAtual(user_id, course_id);
+        HashMap response = courseService.AulaAtual(user_id, course_id);
 
-        return ResponseEntity.ok().body(aula);
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("/exercise")

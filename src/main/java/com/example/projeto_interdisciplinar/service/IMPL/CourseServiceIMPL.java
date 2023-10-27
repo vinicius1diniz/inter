@@ -28,8 +28,15 @@ public class CourseServiceIMPL implements CourseService {
     public UsuarioCurso findLastCourse(int id){
         return userCourseRepo.UltimoCursoAcessado(id);
     }
-    public int AulaAtual(int user_id, int course_id){
-        return userCourseRepo.getAulaAtual(user_id, course_id);
+    public HashMap<String, Object> AulaAtual(int user_id, int course_id){
+        int aulaAtual = userCourseRepo.getAulaAtual(user_id, course_id);
+        String imagem = courseRepo.getCourseUrl(course_id);
+        String curso = courseRepo.getCourseName(course_id);
+        HashMap<String, Object> response = new HashMap<>();
+        response.put("imagem", imagem);
+        response.put("nome_curso", curso);
+        response.put("indice_aula", aulaAtual);
+        return response;
     }
     public Curso showHome(int id){
         UsuarioCurso userCouser = findLastCourse(id);
