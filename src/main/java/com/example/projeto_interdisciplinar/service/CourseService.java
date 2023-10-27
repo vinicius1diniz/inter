@@ -15,5 +15,5 @@ public interface CourseService {
     Curso showHome(int id);
     List<Curso> findCoursesByTheme(String tema);
 
-    int AulaAtual(int user_id, int course_id);
+    HashMap AulaAtual(int user_id, int course_id);
 }
