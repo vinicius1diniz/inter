@@ -5,6 +5,8 @@ import com.example.projeto_interdisciplinar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,10 +61,13 @@ public class UserController {
     public ResponseEntity saveFoto(@RequestBody Map<String, String> requestMap) {
         String email = requestMap.get("email");
         String imagem = requestMap.get("imagem");
+        HashMap<String, Object> response = new HashMap<>();
         if (email != null) {
             userService.saveFoto(email, imagem);
-            return ResponseEntity.ok().body("Foto alterada com sucesso");
+            response.put("response", "Foto alterada com sucesso");
+            return ResponseEntity.ok().body(response);
         }
-        return ResponseEntity.badRequest().body("Erro, sem e-mail");
+        response.put("response", "Erro, sem e-mail");
+        return ResponseEntity.badRequest().body(response);
     }
 }
