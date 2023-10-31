@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/user")
@@ -55,9 +56,10 @@ public class UserController {
         return response;
     }
     @PatchMapping("/foto")
-    public ResponseEntity saveFoto(@RequestParam String email, @RequestParam String imagem){
-        //teste
-        if(email != null){
+    public ResponseEntity saveFoto(@RequestBody Map<String, String> requestMap) {
+        String email = requestMap.get("email");
+        String imagem = requestMap.get("imagem");
+        if (email != null) {
             userService.saveFoto(email, imagem);
             return ResponseEntity.ok().body("Foto alterada com sucesso");
         }
