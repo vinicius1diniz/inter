@@ -29,31 +29,43 @@ public class CourseServiceIMPL implements CourseService {
         return courseRepo.CursosSugeridos();
     }
     public UsuarioCurso findLastCourse(int id){
-        return userCourseRepo.UltimoCursoAcessado(id);
+        try{
+            return userCourseRepo.UltimoCursoAcessado(id);
+        } catch (Exception e){
+            return null;
+        }
     }
     public HashMap<String, Object> AulaAtual(String email, int course_id){
-        int user_id = userRepo.findIdByEmail(email);
-        int aulaAtual;
         try{
-            aulaAtual = userCourseRepo.getAulaAtual(user_id, course_id);
+            int user_id = userRepo.findIdByEmail(email);
+            int aulaAtual;
+            try{
+                aulaAtual = userCourseRepo.getAulaAtual(user_id, course_id);
+            } catch (Exception e){
+                UsuarioCurso novoCurso = new UsuarioCurso(user_id, course_id);
+                userCourseRepo.save(novoCurso);
+                aulaAtual = userCourseRepo.getAulaAtual(user_id, course_id);
+            }
+            String imagem = courseRepo.getCourseUrl(course_id);
+            String curso = courseRepo.getCourseName(course_id);
+            HashMap<String, Object> response = new HashMap<>();
+            response.put("imagem", imagem);
+            response.put("nome_curso", curso);
+            response.put("indice_aula", aulaAtual);
+            return response;
         } catch (Exception e){
-            UsuarioCurso novoCurso = new UsuarioCurso(user_id, course_id);
-            userCourseRepo.save(novoCurso);
-            aulaAtual = userCourseRepo.getAulaAtual(user_id, course_id);
+            return null;
         }
-        String imagem = courseRepo.getCourseUrl(course_id);
-        String curso = courseRepo.getCourseName(course_id);
-        HashMap<String, Object> response = new HashMap<>();
-        response.put("imagem", imagem);
-        response.put("nome_curso", curso);
-        response.put("indice_aula", aulaAtual);
-        return response;
     }
     public Curso showHome(int id){
-        UsuarioCurso userCouser = findLastCourse(id);
-        if (userCouser != null){
-            return courseRepo.findById(userCouser.getFk_curso_id()).orElse(null);
-        } else{
+        try{
+            UsuarioCurso userCouser = findLastCourse(id);
+            if (userCouser != null){
+                return courseRepo.findById(userCouser.getFk_curso_id()).orElse(null);
+            } else{
+                return null;
+            }
+        } catch (Exception e){
             return null;
         }
     }

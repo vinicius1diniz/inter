@@ -22,8 +22,12 @@ public class QuestionServiceIMPL implements QuestionService {
 
     @Override
     public Questao getExerciseByClass(int tema_id, int id_aula_atual) {
-        List<Aula> cursos = lessonRepo.AllLessons(tema_id);
-        Aula aula_atual = cursos.get(id_aula_atual);
-        return questionRepo.findQuestionByAula(aula_atual.getId());
+        try{
+            List<Aula> cursos = lessonRepo.AllLessons(tema_id);
+            Aula aula_atual = cursos.get(id_aula_atual);
+            return questionRepo.findQuestionByAula(aula_atual.getId());
+        } catch (Exception e){
+            return null;
+        }
     }
 }
