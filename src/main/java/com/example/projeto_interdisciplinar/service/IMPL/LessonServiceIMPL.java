@@ -15,6 +15,10 @@ public class LessonServiceIMPL implements LessonService {
     private LessonRepo lessonRepo;
 
     public List<Aula> getAulasByCurso(int id){
-        return lessonRepo.AllLessons(id);
+        try{
+            return lessonRepo.AllLessons(id);
+        } catch (Exception e){
+            return null;
+        }
     }
 }

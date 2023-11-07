@@ -29,7 +29,11 @@ public class CourseServiceIMPL implements CourseService {
         return courseRepo.CursosSugeridos();
     }
     public UsuarioCurso findLastCourse(int id){
-        return userCourseRepo.UltimoCursoAcessado(id);
+        try{
+            return userCourseRepo.UltimoCursoAcessado(id);
+        } catch (Exception e){
+            return null;
+        }
     }
     public HashMap<String, Object> AulaAtual(String email, int course_id){
         try{
@@ -54,10 +58,14 @@ public class CourseServiceIMPL implements CourseService {
         }
     }
     public Curso showHome(int id){
-        UsuarioCurso userCouser = findLastCourse(id);
-        if (userCouser != null){
-            return courseRepo.findById(userCouser.getFk_curso_id()).orElse(null);
-        } else{
+        try{
+            UsuarioCurso userCouser = findLastCourse(id);
+            if (userCouser != null){
+                return courseRepo.findById(userCouser.getFk_curso_id()).orElse(null);
+            } else{
+                return null;
+            }
+        } catch (Exception e){
             return null;
         }
     }
