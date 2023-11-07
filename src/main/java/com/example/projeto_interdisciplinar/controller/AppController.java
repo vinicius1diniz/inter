@@ -61,9 +61,8 @@ public class AppController {
         return ResponseEntity.ok().body(response);
     }
     @GetMapping("/currentclass")
-    public ResponseEntity currentClass(@RequestParam int user_id, @RequestParam int course_id){
-        HashMap response = courseService.AulaAtual(user_id, course_id);
-
+    public ResponseEntity currentClass(@RequestParam String email, @RequestParam int course_id){
+        HashMap response = courseService.AulaAtual(email, course_id);
         return ResponseEntity.ok().body(response);
     }
 

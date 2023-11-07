@@ -4,6 +4,7 @@ import com.example.projeto_interdisciplinar.entity.Curso;
 import com.example.projeto_interdisciplinar.entity.UsuarioCurso;
 import com.example.projeto_interdisciplinar.repo.CourseRepo;
 import com.example.projeto_interdisciplinar.repo.UserCourseRepo;
+import com.example.projeto_interdisciplinar.repo.UserRepo;
 import com.example.projeto_interdisciplinar.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ public class CourseServiceIMPL implements CourseService {
     private CourseRepo courseRepo;
     @Autowired
     private UserCourseRepo userCourseRepo;
+    @Autowired
+    private UserRepo userRepo;
 
     public List<Curso> findAllCourses(){
         return courseRepo.findAll();
@@ -28,7 +31,8 @@ public class CourseServiceIMPL implements CourseService {
     public UsuarioCurso findLastCourse(int id){
         return userCourseRepo.UltimoCursoAcessado(id);
     }
-    public HashMap<String, Object> AulaAtual(int user_id, int course_id){
+    public HashMap<String, Object> AulaAtual(String email, int course_id){
+        int user_id = userRepo.findIdByEmail(email);
         int aulaAtual = userCourseRepo.getAulaAtual(user_id, course_id);
         String imagem = courseRepo.getCourseUrl(course_id);
         String curso = courseRepo.getCourseName(course_id);
