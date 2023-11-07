@@ -36,15 +36,6 @@ public class AppController {
     public ResponseEntity ranking(){
         return userService.getRanking();
     }
-    @GetMapping("/home")
-    public ResponseEntity home(@RequestParam int id){
-        Curso response =  courseService.showHome(id);
-        if(response != null){
-            return ResponseEntity.ok().body(response);
-        } else{
-            return ResponseEntity.badRequest().body("Erro ao carregar página do usuário");
-        }
-    }
     @GetMapping("/cursosbytema")
     public ResponseEntity cursosByTema(@RequestParam String tema){
         List<Curso> response = courseService.findCoursesByTheme(tema);
@@ -60,12 +51,12 @@ public class AppController {
         return ResponseEntity.ok().body(response);
     }
     @GetMapping("/suggestedcourse")
-    public ResponseEntity suggestedCourses(){
-        List<Curso> response = courseService.findSuggestedCourses();
+    public ResponseEntity suggestedCourses(String email){
+        HashMap<String, Curso> response = courseService.showHome(email);
         if(response != null){
             return ResponseEntity.ok().body(response);
         } else{
-            return ResponseEntity.badRequest().body("Erro ao gerar cursos sugeridos");
+            return ResponseEntity.badRequest().body("Erro ao gerar página de home");
         }
     }
     @GetMapping("/lessons")

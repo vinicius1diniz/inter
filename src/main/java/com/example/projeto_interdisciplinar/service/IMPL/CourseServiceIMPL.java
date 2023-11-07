@@ -25,12 +25,9 @@ public class CourseServiceIMPL implements CourseService {
     public List<Curso> findAllCourses(){
         return courseRepo.findAll();
     }
-    public List<Curso> findSuggestedCourses(){
-        return courseRepo.CursosSugeridos();
-    }
-    public UsuarioCurso findLastCourse(int id){
+    public UsuarioCurso findLastCourse(int usuario_id){
         try{
-            return userCourseRepo.UltimoCursoAcessado(id);
+            return userCourseRepo.UltimoCursoAcessado(usuario_id);
         } catch (Exception e){
             return null;
         }
@@ -57,7 +54,10 @@ public class CourseServiceIMPL implements CourseService {
             return null;
         }
     }
-    public Curso showHome(int id){
+    public List<Curso> findSuggestedCourses(){
+        return courseRepo.CursosSugeridos();
+    }
+    public Curso showLastCourse(int id){
         try{
             UsuarioCurso userCouser = findLastCourse(id);
             if (userCouser != null){
@@ -68,6 +68,21 @@ public class CourseServiceIMPL implements CourseService {
         } catch (Exception e){
             return null;
         }
+    }
+    public HashMap<String, Curso> showHome(String email){
+        try{
+            int user_id = userRepo.findIdByEmail(email);
+            Curso lastCourse = showLastCourse(user_id);
+            List<Curso> suggestedCourse = findSuggestedCourses();
+            HashMap<String, Curso> response = new HashMap<>();
+            response.put("ultimo", lastCourse);
+            response.put("sugerido1", suggestedCourse.get(0));
+            response.put("sugerido2", suggestedCourse.get(1));
+            return response;
+        } catch (Exception e){
+            return null;
+        }
+
     }
 
     public List<Curso> findCoursesByTheme(String tema){
