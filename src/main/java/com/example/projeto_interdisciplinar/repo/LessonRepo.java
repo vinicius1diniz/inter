@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface LessonRepo extends JpaRepository<UsuarioCurso,Integer> {
-    @Query("SELECT u FROM Aula u WHERE u.fk_curso_id = :id")
+    @Query("SELECT u FROM Aula u WHERE u.fk_curso_id = :id ORDER BY u.id")
     List<Aula> AllLessons(int id);
 }
