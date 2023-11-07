@@ -10,9 +10,10 @@ import java.util.Map;
 public interface CourseService {
     List<Curso> findAllCourses();
     List<Curso> findSuggestedCourses();
-    UsuarioCurso findLastCourse(int id);
-    Curso showHome(int id);
+    UsuarioCurso findLastCourse(int usuario_id);
+    Curso showLastCourse(int id);
     List<Curso> findCoursesByTheme(String tema);
 
     HashMap AulaAtual(String email, int course_id);
+    HashMap<String, Curso> showHome(String email);
 }
