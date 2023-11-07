@@ -68,8 +68,9 @@ public class AppController {
     }
 
     @GetMapping("/exercise")
-    public ResponseEntity exercise(@RequestParam int class_id){
-        Questao questao = questionService.getExerciseByClass(class_id);
+    public ResponseEntity exercise(@RequestParam int tema_id, @RequestParam int id_aula_atual){
+        Questao questao = questionService.getExerciseByClass(tema_id, id_aula_atual);
         return ResponseEntity.ok().body(questao);
     }
+    //
 }
