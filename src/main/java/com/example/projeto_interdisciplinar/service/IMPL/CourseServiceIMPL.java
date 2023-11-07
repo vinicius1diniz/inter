@@ -72,15 +72,19 @@ public class CourseServiceIMPL implements CourseService {
     public HashMap<String, Object> showHome(String email){
         try{
             int user_id = userRepo.findIdByEmail(email);
-            Curso lastCourse = showLastCourse(user_id);
-            int course_id = lastCourse.getId();
-            int indice = userCourseRepo.getAulaAtual(user_id, course_id);
-            String imagem = courseRepo.getCourseUrl(course_id);
-            String curso = courseRepo.getCourseName(course_id);
             HashMap<String, Object> ultimo = new HashMap<>();
-            ultimo.put("imagem", imagem);
-            ultimo.put("nome_curso", curso);
-            ultimo.put("indice_aula", indice);
+            try{
+                Curso lastCourse = showLastCourse(user_id);
+                int course_id = lastCourse.getId();
+                int indice = userCourseRepo.getAulaAtual(user_id, course_id);
+                String imagem = courseRepo.getCourseUrl(course_id);
+                String curso = courseRepo.getCourseName(course_id);
+                ultimo.put("imagem", imagem);
+                ultimo.put("nome_curso", curso);
+                ultimo.put("indice_aula", indice);
+            } catch (Exception e){
+                ultimo = null;
+            }
             List<Curso> suggestedCourse = findSuggestedCourses();
             HashMap<String, Object> response = new HashMap<>();
             response.put("ultimo", ultimo);
