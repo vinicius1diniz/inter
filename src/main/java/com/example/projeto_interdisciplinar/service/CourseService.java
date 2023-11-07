@@ -15,5 +15,5 @@ public interface CourseService {
     List<Curso> findCoursesByTheme(String tema);
 
     HashMap AulaAtual(String email, int course_id);
-    HashMap<String, Curso> showHome(String email);
+    HashMap<String, Object> showHome(String email);
 }

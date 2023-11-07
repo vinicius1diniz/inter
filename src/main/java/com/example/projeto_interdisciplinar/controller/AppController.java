@@ -51,8 +51,8 @@ public class AppController {
         return ResponseEntity.ok().body(response);
     }
     @GetMapping("/suggestedcourse")
-    public ResponseEntity suggestedCourses(String email){
-        HashMap<String, Curso> response = courseService.showHome(email);
+    public ResponseEntity suggestedCourses(@RequestParam String email){
+        HashMap<String, Object> response = courseService.showHome(email);
         if(response != null){
             return ResponseEntity.ok().body(response);
         } else{
@@ -74,7 +74,7 @@ public class AppController {
         if (response != null){
             return ResponseEntity.ok().body(response);
         } else{
-            return ResponseEntity.badRequest().body("Email inválido");
+            return ResponseEntity.badRequest().body("Curso inválido");
         }
     }
 
