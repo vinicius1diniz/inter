@@ -69,5 +69,6 @@ public class UserController {
         }
         response.put("response", "Erro, sem e-mail");
         return ResponseEntity.badRequest().body(response);
+        //
     }
 }
