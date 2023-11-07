@@ -63,7 +63,11 @@ public class AppController {
     @GetMapping("/currentclass")
     public ResponseEntity currentClass(@RequestParam String email, @RequestParam int course_id){
         HashMap response = courseService.AulaAtual(email, course_id);
-        return ResponseEntity.ok().body(response);
+        if (response != null){
+            return ResponseEntity.ok().body(response);
+        } else{
+            return ResponseEntity.badRequest().body("Email inválido");
+        }
     }
 
     @GetMapping("/exercise")
