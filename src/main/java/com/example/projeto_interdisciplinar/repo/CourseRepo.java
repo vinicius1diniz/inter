@@ -17,4 +17,3 @@ public interface CourseRepo extends JpaRepository<Curso,Integer> {
     @Query("SELECT u.nome FROM Curso u WHERE u.id = :id")
     String getCourseName(int id);
 }
-
