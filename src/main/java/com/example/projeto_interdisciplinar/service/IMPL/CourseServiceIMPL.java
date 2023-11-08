@@ -8,10 +8,10 @@ import com.example.projeto_interdisciplinar.repo.UserRepo;
 import com.example.projeto_interdisciplinar.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+
+import javax.xml.crypto.Data;
+import java.sql.Timestamp;
+import java.util.*;
 
 @Service
 public class CourseServiceIMPL implements CourseService {
@@ -30,6 +30,18 @@ public class CourseServiceIMPL implements CourseService {
             return userCourseRepo.UltimoCursoAcessado(usuario_id);
         } catch (Exception e){
             return null;
+        }
+    }
+
+    public void setLastCourse(int course_id, String email){
+        int user_id = userRepo.findIdByEmail(email);
+        try{
+            UsuarioCurso curso = userCourseRepo.CursoEmProgresso(course_id, user_id);
+            curso.setUltimo_acesso(new Timestamp(System.currentTimeMillis()));
+            userCourseRepo.save(curso);
+        } catch (Exception e){
+            UsuarioCurso curso = new UsuarioCurso(user_id, course_id);
+            userCourseRepo.save(curso);
         }
     }
     public HashMap<String, Object> AulaAtual(String email, int course_id){
