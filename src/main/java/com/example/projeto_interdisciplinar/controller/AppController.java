@@ -7,7 +7,7 @@ import com.example.projeto_interdisciplinar.service.CourseService;
 import com.example.projeto_interdisciplinar.service.LessonService;
 import com.example.projeto_interdisciplinar.service.QuestionService;
 import com.example.projeto_interdisciplinar.service.UserService;
-import org.apache.coyote.Response;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,9 +79,13 @@ public class AppController {
     }
 
     @GetMapping("/exercise")
-    public ResponseEntity exercise(@RequestParam int tema_id, @RequestParam int id_aula_atual){
-        Questao questao = questionService.getExerciseByClass(tema_id, id_aula_atual);
-        return ResponseEntity.ok().body(questao);
+    public ResponseEntity exercise(@RequestParam int course_id, @RequestParam String email){
+        Questao response = questionService.getExerciseByClass(course_id, email);
+        if (response != null){
+            return ResponseEntity.ok().body(response);
+        } else{
+            return ResponseEntity.badRequest().body("Sem nenhuma questão válida para esse curso");
+        }
     }
     //
 }

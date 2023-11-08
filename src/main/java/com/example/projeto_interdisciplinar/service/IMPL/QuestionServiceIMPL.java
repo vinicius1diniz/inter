@@ -3,9 +3,7 @@ package com.example.projeto_interdisciplinar.service.IMPL;
 import com.example.projeto_interdisciplinar.entity.Aula;
 import com.example.projeto_interdisciplinar.entity.Curso;
 import com.example.projeto_interdisciplinar.entity.Questao;
-import com.example.projeto_interdisciplinar.repo.CourseRepo;
-import com.example.projeto_interdisciplinar.repo.LessonRepo;
-import com.example.projeto_interdisciplinar.repo.QuestionRepo;
+import com.example.projeto_interdisciplinar.repo.*;
 import com.example.projeto_interdisciplinar.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,13 +17,21 @@ public class QuestionServiceIMPL implements QuestionService {
     private QuestionRepo questionRepo;
     @Autowired
     private LessonRepo lessonRepo;
+    @Autowired
+    private UserRepo userRepo;
+    @Autowired
+    private UserCourseRepo userCourseRepo;
 
     @Override
-    public Questao getExerciseByClass(int tema_id, int id_aula_atual) {
+    public Questao getExerciseByClass(int curso_id, String email) {
         try{
-            List<Aula> cursos = lessonRepo.AllLessons(tema_id);
-            Aula aula_atual = cursos.get(id_aula_atual);
-            return questionRepo.findQuestionByAula(aula_atual.getId());
+            int user_id = userRepo.findIdByEmail(email);
+            int num_aula_atual = userCourseRepo.getAulaAtual(user_id, curso_id);
+            List<Aula> aulas = lessonRepo.AllLessons(curso_id);
+            Aula aula_atual = aulas.get(num_aula_atual-1);
+            int id_aula_atual = aula_atual.getId();
+            return questionRepo.findQuestionByAula(id_aula_atual);
+
         } catch (Exception e){
             return null;
         }
