@@ -16,4 +16,5 @@ public interface CourseService {
 
     HashMap AulaAtual(String email, int course_id);
     HashMap<String, Object> showHome(String email);
+    void setLastCourse(int course_id, String email);
 }

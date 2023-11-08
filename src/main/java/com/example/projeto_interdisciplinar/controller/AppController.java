@@ -87,5 +87,10 @@ public class AppController {
             return ResponseEntity.badRequest().body("Sem nenhuma questão válida para esse curso");
         }
     }
+    @GetMapping("/setlastclass")
+    public ResponseEntity lastClass(@RequestParam int course_id, @RequestParam String email){
+        courseService.setLastCourse(course_id, email);
+        return ResponseEntity.ok().body("Ultimo acesso atualizado");
+    }
     //
 }
