@@ -37,6 +37,7 @@ public class CourseServiceIMPL implements CourseService {
         int user_id = userRepo.findIdByEmail(email);
         UsuarioCurso curso = userCourseRepo.CursoEmProgresso(course_id, user_id);
         curso.setUltimo_acesso(new Timestamp(System.currentTimeMillis()));
+        userCourseRepo.save(curso);
     }
     public HashMap<String, Object> AulaAtual(String email, int course_id){
         try{
